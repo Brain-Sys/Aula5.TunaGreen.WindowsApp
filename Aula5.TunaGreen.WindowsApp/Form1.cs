@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,16 @@ namespace Aula5.TunaGreen.WindowsApp
         public Form1()
         {
             InitializeComponent();
+
+            ctx.Database.Log = writeLog;
+            //ctx.Database.Log = (text) => { Console.WriteLine(text); };
+        }
+
+        private void writeLog(string text)
+        {
+            // Scrive nell'output di VS
+            Debug.WriteLine(text);
+            File.AppendAllText("E:\\Log_Aula5.txt", text);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -54,5 +66,81 @@ namespace Aula5.TunaGreen.WindowsApp
             await ctx.SaveChangesAsync();
             MessageBox.Show("Finito!!!!");
         }
+
+        private async void txtSearchKm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                int km = Int32.Parse(this.txtSearchKm.Text);
+
+                List<Car> list = await ctx.Cars
+                    .Where(auto => auto.Km < km)
+                    .ToListAsync();
+
+                MessageBox.Show(list.Count.ToString());
+            }
+        }
+
+        private async void btnChangeCar_Click(object sender, EventArgs e)
+        {
+            //var list1 = ctx.Cars
+            //    .Where(c => c.ID > 45 /* && c.Model.Contains("86") && c.Km > 200*/)
+            //    .Where(c => c.Model.Contains("86"))
+            //    .Where(c => c.Km > 200)
+            //    .ToList();
+
+            IQueryable<Car> query = ctx.Cars.AsQueryable();
+
+            if (DateTime.Now.Day == 19)
+            {
+                query = query.Where(c => c.Km > 1000);
+            }
+
+            //if (DateTime.Now.Month == 7)
+            //{
+            //    query = query.Where(c => c.ID == 307);
+            //}
+
+            query = query
+                .OrderByDescending(c => c.Km);
+            //.ThenBy(c => c.ID)
+            //.ThenByDescending(c => c.Identifier);
+
+            Car car = query.FirstOrDefault();
+
+            if (car != null)
+            {
+                car.Identifier = "BY198PE";
+                car.Km++;
+                await ctx.SaveChangesAsync();
+            }
+
+            //List<Car> automobili = ctx.Database
+            //    .SqlQuery<Car>("SELECT Identifier, ID, Model, Km FROM dbo.Cars ORDER BY Km")
+            //    .ToList();
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            int id = Int32.Parse(this.txtId.Text);
+
+            //Car delete = ctx.Cars.Where(c => c.ID == id).FirstOrDefault();
+            Car delete = await ctx.Cars.FirstOrDefaultAsync(c => c.ID == id);
+
+            if (delete != null)
+            {
+                ctx.Cars.Remove(delete);
+                //await ctx.SaveChangesAsync();
+            }
+
+            string sql = $"DELETE FROM dbo.Cars WHERE ID={id}";
+            int numRecords = await ctx.Database.ExecuteSqlCommandAsync(sql);
+
+        }
+
+        //private bool filtraPerKm(Car auto)
+        //{
+        //    return auto.Km < 5000;
+        //}
     }
 }

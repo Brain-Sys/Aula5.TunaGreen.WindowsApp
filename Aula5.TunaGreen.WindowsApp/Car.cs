@@ -18,5 +18,7 @@ namespace Aula5.TunaGreen.WindowsApp
         public string Model { get; set; }
         public double Km { get; set; }
         public string Identifier { get; set; }
+        public string Color { get; set; }
+        public Nullable<System.DateTime> RegistrationDate { get; set; }
     }
 }

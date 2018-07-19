@@ -40,7 +40,9 @@ namespace Aula5.TunaGreen.WindowsApp
             Car miaAuto = new Car();
             miaAuto.Identifier = "ABCDEF";
             miaAuto.Km = 56000;
-            miaAuto.Model = "Fiat 500";
+            miaAuto.Model = "BMW";
+            miaAuto.Color = "Antracite";
+            miaAuto.RegistrationDate = DateTime.Now;
 
             tabella.Add(miaAuto);
             ctx.SaveChanges();

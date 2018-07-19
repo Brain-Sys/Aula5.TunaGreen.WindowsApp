@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Brand.cs">
+      <DependentUpon>CarsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Car.cs">
       <DependentUpon>CarsModel.tt</DependentUpon>
     </Compile>
@@ -71,6 +74,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CarsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="CsvRow.cs">
+      <DependentUpon>CarsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

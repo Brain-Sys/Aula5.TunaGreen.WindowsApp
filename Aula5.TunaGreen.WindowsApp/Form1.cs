@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -138,6 +139,34 @@ namespace Aula5.TunaGreen.WindowsApp
             string sql = $"DELETE FROM dbo.Cars WHERE ID={id}";
             int numRecords = await ctx.Database.ExecuteSqlCommandAsync(sql);
 
+        }
+
+        private void btnSearchRegistrationDate_Click(object sender, EventArgs e)
+        {
+            var dt = new DateTime(2015, 01, 01);
+            // var list1 = ctx.Cars.Where(c => c.RegistrationDate.Value.Year >= 2015).ToList();
+            //var list2 = ctx.Cars.Where(c => c.RegistrationDate >= dt).ToList();
+
+            //DbRawSqlQuery<CsvRow> query1 = ctx.Database.SqlQuery<CsvRow>
+            //    ("SELECT c.Model AS ModelName, b.Country AS Nation FROM dbo.Cars c INNER JOIN dbo.Brands b ON c.IDBrand = b.ID");
+            //var rows1 = query1.ToList();
+
+            DirectoryInfo di = new DirectoryInfo("E:\\Documenti\\Preventivi");
+            var marcheDiAutomobili = di.GetDirectories();
+
+            var query2 = ctx.Cars.Join(ctx.Brands, c => c.IDBrand, b => b.ID,
+                (c, b) => new { ModelName = c.Model, Nation = b.Country });
+            var rows2 = query2.ToList();
+
+            List<CsvRow> righe = new List<CsvRow>();
+            foreach (var item in rows2)
+            {
+                righe.Add(new CsvRow() { ModelName = item.ModelName, Nation = item.Nation });
+            }
+
+            var query3 = ctx.Cars.Join(marcheDiAutomobili, c => c.Brand.Name, d => d.Name,
+                (c, d) => new { Marca = c.Brand.Name, NumeroPreventivi = d.GetFiles("*.docx").Length });
+            var rows3 = query3.ToList();
         }
 
         //private bool filtraPerKm(Car auto)

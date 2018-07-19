@@ -10,18 +10,10 @@
 namespace Aula5.TunaGreen.WindowsApp
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Car
+    public partial class CsvRow
     {
-        public int ID { get; set; }
-        public string Model { get; set; }
-        public double Km { get; set; }
-        public string Identifier { get; set; }
-        public string Color { get; set; }
-        public Nullable<System.DateTime> RegistrationDate { get; set; }
-        public int IDBrand { get; set; }
-    
-        public virtual Brand Brand { get; set; }
+        public string ModelName { get; set; }
+        public string Nation { get; set; }
     }
 }

@@ -26,5 +26,6 @@ namespace Aula5.TunaGreen.WindowsApp
         }
     
         public virtual DbSet<Car> Cars { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
     }
 }

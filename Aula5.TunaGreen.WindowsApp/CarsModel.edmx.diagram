@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="95ebecde8bef46069a4ca8a640f17f47" Name="Diagram1">
         <EntityTypeShape EntityType="DB_8049_oec216Model.Car" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" FillColor="255, 128, 0" />
+        <EntityTypeShape EntityType="DB_8049_oec216Model.Brand" Width="1.5" PointX="4.625" PointY="0.75" />
+        <AssociationConnector Association="DB_8049_oec216Model.FK_Cars_Brands" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

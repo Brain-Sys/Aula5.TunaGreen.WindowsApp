@@ -34,6 +34,7 @@
             this.btnChangeCar = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.btnSearchRegistrationDate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSave
@@ -94,11 +95,22 @@
             this.txtId.TabIndex = 5;
             this.txtId.Text = "325";
             // 
+            // btnSearchRegistrationDate
+            // 
+            this.btnSearchRegistrationDate.Location = new System.Drawing.Point(291, 11);
+            this.btnSearchRegistrationDate.Name = "btnSearchRegistrationDate";
+            this.btnSearchRegistrationDate.Size = new System.Drawing.Size(260, 54);
+            this.btnSearchRegistrationDate.TabIndex = 6;
+            this.btnSearchRegistrationDate.Text = "Ricerca Immatricolazione";
+            this.btnSearchRegistrationDate.UseVisualStyleBackColor = true;
+            this.btnSearchRegistrationDate.Click += new System.EventHandler(this.btnSearchRegistrationDate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnSearchRegistrationDate);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnChangeCar);
@@ -120,6 +132,7 @@
         private System.Windows.Forms.Button btnChangeCar;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Button btnSearchRegistrationDate;
     }
 }
 

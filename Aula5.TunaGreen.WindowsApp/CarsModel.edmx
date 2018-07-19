@@ -5,19 +5,45 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DB_8049_oec216Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Brands">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cars">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDBrand" Type="int" Nullable="false" />
           <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Km" Type="float" Nullable="false" />
           <Property Name="Identifier" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Color" Type="varchar" MaxLength="50" />
           <Property Name="RegistrationDate" Type="smalldatetime" />
         </EntityType>
+        <Association Name="FK_Cars_Brands">
+          <End Role="Brands" Type="Self.Brands" Multiplicity="1" />
+          <End Role="Cars" Type="Self.Cars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brands">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Cars">
+              <PropertyRef Name="IDBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DB_8049_oec216ModelStoreContainer">
+          <EntitySet Name="Brands" EntityType="Self.Brands" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cars_Brands" Association="Self.FK_Cars_Brands">
+            <End Role="Brands" EntitySet="Brands" />
+            <End Role="Cars" EntitySet="Cars" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -33,10 +59,42 @@
           <Property Name="Identifier" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RegistrationDate" Type="DateTime" Precision="0" />
+          <Property Name="IDBrand" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="DB_8049_oec216Model.FK_Cars_Brands" FromRole="Car" ToRole="Brand" />
         </EntityType>
         <EntityContainer Name="DB_8049_oec216Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="Brands" EntityType="DB_8049_oec216Model.Brand" />
+          <AssociationSet Name="FK_Cars_Brands" Association="DB_8049_oec216Model.FK_Cars_Brands">
+            <End Role="Brand" EntitySet="Brands" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
         </EntityContainer>
+        <ComplexType Name="CsvRow" >
+          <Property Type="String" Name="ModelName" Nullable="false" />
+          <Property Type="String" Name="Nation" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cars" Relationship="DB_8049_oec216Model.FK_Cars_Brands" FromRole="Brand" ToRole="Car" />
+        </EntityType>
+        <Association Name="FK_Cars_Brands">
+          <End Type="DB_8049_oec216Model.Brand" Role="Brand" Multiplicity="1" />
+          <End Type="DB_8049_oec216Model.Car" Role="Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="IDBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -46,12 +104,22 @@
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="DB_8049_oec216Model.Car">
               <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="IDBrand" ColumnName="IDBrand" />
                 <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="Km" ColumnName="Km" />
                 <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brands">
+            <EntityTypeMapping TypeName="DB_8049_oec216Model.Brand">
+              <MappingFragment StoreEntitySet="Brands">
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

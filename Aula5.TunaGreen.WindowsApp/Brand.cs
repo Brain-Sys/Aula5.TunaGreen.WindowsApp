@@ -12,16 +12,19 @@ namespace Aula5.TunaGreen.WindowsApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Car
+    public partial class Brand
     {
-        public int ID { get; set; }
-        public string Model { get; set; }
-        public double Km { get; set; }
-        public string Identifier { get; set; }
-        public string Color { get; set; }
-        public Nullable<System.DateTime> RegistrationDate { get; set; }
-        public int IDBrand { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Brand()
+        {
+            this.Cars = new HashSet<Car>();
+        }
     
-        public virtual Brand Brand { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Country { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Car> Cars { get; set; }
     }
 }

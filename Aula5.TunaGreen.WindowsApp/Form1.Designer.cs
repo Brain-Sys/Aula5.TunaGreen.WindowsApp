@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnMassiveCreate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSave
@@ -41,11 +42,22 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // btnMassiveCreate
+            // 
+            this.btnMassiveCreate.Location = new System.Drawing.Point(133, 12);
+            this.btnMassiveCreate.Name = "btnMassiveCreate";
+            this.btnMassiveCreate.Size = new System.Drawing.Size(152, 53);
+            this.btnMassiveCreate.TabIndex = 1;
+            this.btnMassiveCreate.Text = "Creazione Massiva";
+            this.btnMassiveCreate.UseVisualStyleBackColor = true;
+            this.btnMassiveCreate.Click += new System.EventHandler(this.btnMassiveCreate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnMassiveCreate);
             this.Controls.Add(this.btnSave);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -56,6 +68,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnMassiveCreate;
     }
 }
 

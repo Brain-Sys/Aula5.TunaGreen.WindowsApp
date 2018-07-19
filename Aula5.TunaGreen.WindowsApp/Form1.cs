@@ -13,6 +13,9 @@ namespace Aula5.TunaGreen.WindowsApp
 {
     public partial class Form1 : Form
     {
+        // ctx
+        DB_8049_oec216Entities ctx = new DB_8049_oec216Entities();
+
         public Form1()
         {
             InitializeComponent();
@@ -20,7 +23,6 @@ namespace Aula5.TunaGreen.WindowsApp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DB_8049_oec216Entities ctx = new DB_8049_oec216Entities();
             DbSet<Car> tabella = ctx.Cars;
 
             Car miaAuto = new Car();
@@ -33,6 +35,24 @@ namespace Aula5.TunaGreen.WindowsApp
 
             // Multiple Active Result Set
             MessageBox.Show("Tutto ok, ID=" + miaAuto.ID.ToString());
+        }
+
+        private async void btnMassiveCreate_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random((int)DateTime.Now.Ticks);
+
+            for (int i = 0; i < 100; i++)
+            {
+                Car c = new Car();
+                c.Km = rnd.Next(0, 50000);
+                c.Model = "Modello " + rnd.Next(0, 50000).ToString();
+                c.Identifier = "-";
+
+                ctx.Cars.Add(c);
+            }
+
+            await ctx.SaveChangesAsync();
+            MessageBox.Show("Finito!!!!");
         }
     }
 }

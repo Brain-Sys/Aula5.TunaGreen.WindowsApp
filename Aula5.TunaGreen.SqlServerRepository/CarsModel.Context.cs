@@ -12,6 +12,8 @@ namespace Aula5.TunaGreen.SqlServerRepository
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class TunaGreenEntities : DbContext
     {
@@ -27,5 +29,19 @@ namespace Aula5.TunaGreen.SqlServerRepository
     
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Car> Cars { get; set; }
+    
+        public virtual int ResetRegistrationDate()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ResetRegistrationDate");
+        }
+    
+        public virtual ObjectResult<SmallCar> SearchCarsByYear(Nullable<int> year)
+        {
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("Year", year) :
+                new ObjectParameter("Year", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SmallCar>("SearchCarsByYear", yearParameter);
+        }
     }
 }

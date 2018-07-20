@@ -59,6 +59,14 @@
     <Compile Include="Migrations\201807201420136_OptimizeName.Designer.cs">
       <DependentUpon>201807201420136_OptimizeName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807201423463_ChangeTableName.cs" />
+    <Compile Include="Migrations\201807201423463_ChangeTableName.Designer.cs">
+      <DependentUpon>201807201423463_ChangeTableName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201427139_Versione2.cs" />
+    <Compile Include="Migrations\201807201427139_Versione2.Designer.cs">
+      <DependentUpon>201807201427139_Versione2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StationServiceContext.cs" />
@@ -82,6 +90,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807201420136_OptimizeName.resx">
       <DependentUpon>201807201420136_OptimizeName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201423463_ChangeTableName.resx">
+      <DependentUpon>201807201423463_ChangeTableName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201427139_Versione2.resx">
+      <DependentUpon>201807201427139_Versione2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -14,7 +14,7 @@ namespace Aula5.TunaGreen.ModernWindowsApp
 
         // Il ctor non può essere async
         public Form1()
-        {
+        {   
             InitializeComponent();
             ctx.Init();
         }

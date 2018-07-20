@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula5.TunaGreen.ModernWindo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula5.TunaGreen.OfficialWebsite", "Aula5.TunaGreen.OfficialWebsite\Aula5.TunaGreen.OfficialWebsite.csproj", "{516D8E2E-8D3F-4FF0-B2DC-21463BE6A516}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula5.TunaGreen.Interfaces", "Aula5.TunaGreen.Interfaces\Aula5.TunaGreen.Interfaces.csproj", "{C2992439-9EE2-45CC-8560-838D1C02330F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{516D8E2E-8D3F-4FF0-B2DC-21463BE6A516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{516D8E2E-8D3F-4FF0-B2DC-21463BE6A516}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{516D8E2E-8D3F-4FF0-B2DC-21463BE6A516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2992439-9EE2-45CC-8560-838D1C02330F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2992439-9EE2-45CC-8560-838D1C02330F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2992439-9EE2-45CC-8560-838D1C02330F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2992439-9EE2-45CC-8560-838D1C02330F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

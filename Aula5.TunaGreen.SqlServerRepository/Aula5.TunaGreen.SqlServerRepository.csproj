@@ -101,5 +101,11 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aula5.TunaGreen.Interfaces\Aula5.TunaGreen.Interfaces.csproj">
+      <Project>{c2992439-9ee2-45cc-8560-838d1c02330f}</Project>
+      <Name>Aula5.TunaGreen.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

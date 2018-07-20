@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FilterQuery.cs" />
     <Compile Include="Migrations\201807201347415_InitialCreate.cs" />
     <Compile Include="Migrations\201807201347415_InitialCreate.Designer.cs">
       <DependentUpon>201807201347415_InitialCreate.cs</DependentUpon>

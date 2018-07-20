@@ -21,7 +21,9 @@ namespace Aula5.TunaGreen.Repository
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<FuelType>()
-                .Property(ft => ft.Name).HasMaxLength(10);
+                //.HasKey(ft => new { ft.ID, ft.Name })
+                .Property(ft => ft.Name)
+                .HasMaxLength(10);
             modelBuilder.Entity<FuelType>().ToTable("TIPI_CARBURANTI");
 
             base.OnModelCreating(modelBuilder);

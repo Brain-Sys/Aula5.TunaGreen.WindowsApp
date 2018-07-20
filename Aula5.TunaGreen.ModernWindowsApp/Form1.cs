@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
@@ -23,9 +24,15 @@ namespace Aula5.TunaGreen.ModernWindowsApp
             ctx = ServiceLocator.Resolve<IRepo>("repo");
 
             ctx.Init();
-            db.Database.Log = (s) => {
+            db.Database.Log = (s) =>
+            {
                 Debug.WriteLine(s);
             };
+
+            ctx.Save();
+
+            //bool pending = db.ChangeTracker.HasChanges();
+            //db.ChangeTracker.DetectChanges();
         }
 
         private async void Form1_Load(object sender, EventArgs e)
@@ -38,9 +45,9 @@ namespace Aula5.TunaGreen.ModernWindowsApp
                 .Take(5)
                 .ToList();
 
-                //.ToList()
-                //.OrderBy(c => c.Km)
-                //.Take(10);
+            //.ToList()
+            //.OrderBy(c => c.Km)
+            //.Take(10);
 
             List<SmallCar> ricerca = db.SearchCarsByYear(1970)
                 .Take(20)
@@ -50,6 +57,42 @@ namespace Aula5.TunaGreen.ModernWindowsApp
             List<Car> list = await ctx.TableCars
                 .OrderByDescending(c => c.Km)
                 .ToListAsync();
+        }
+
+        private void btnCreateBrand_Click(object sender, EventArgs e)
+        {
+            Car car = db.Cars.FirstOrDefault(c => c.Km < 45000);
+
+            if (car != null)
+            {
+                car.Km++;
+                DbEntityEntry<Car> obj = db.ChangeTracker.Entries<Car>()
+                    .Where(en => en.State == EntityState.Modified).FirstOrDefault();
+                Car c = obj.Entity;
+                var prima = (double)obj.OriginalValues["Km"];
+                var dopo = (double)obj.CurrentValues["Km"];
+
+                DbPropertyValues values = obj.GetDatabaseValues();
+            }
+
+            List<DbEntityEntry> list = db.ChangeTracker.Entries()
+                .Where(en => en.State != EntityState.Unchanged)
+                .ToList();
+
+            db.SaveChanges();
+
+            //int c = db.ChangeTracker.Entries()
+            //    .Where(en => en.State == EntityState.Added)
+            //    .Count();
+
+            //Brand b = new Brand();
+            //b.Name = "Peugeot";
+            //b.Country = "FR";
+            //db.Brands.Add(b);
+
+            //c = db.ChangeTracker.Entries()
+            //    .Where(en => en.State == EntityState.Added)
+            //    .Count();
         }
     }
 }

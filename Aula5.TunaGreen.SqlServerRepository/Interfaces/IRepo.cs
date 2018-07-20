@@ -11,5 +11,6 @@ namespace Aula5.TunaGreen.SqlServerRepository.Interfaces
         void Init();
         IQueryable<Car> TableCars { get; }
         IQueryable<Brand> TableBrands { get; }
+        void Save();
     }
 }

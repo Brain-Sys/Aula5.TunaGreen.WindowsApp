@@ -35,5 +35,15 @@ namespace Aula5.TunaGreen.SqlServerRepository
             // this.Database.Connection.ConnectionString = "";
 #endif
         }
+
+        public void Save()
+        {
+            // Log delle entity che risultano pending
+            var list = this.ChangeTracker.Entries()
+                .Where(e => e.State != System.Data.Entity.EntityState.Unchanged)
+                .ToList();
+
+            this.SaveChanges();
+        }
     }
 }

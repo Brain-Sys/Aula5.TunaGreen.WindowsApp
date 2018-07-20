@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnCreateBrand = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnCreateBrand
+            // 
+            this.btnCreateBrand.Location = new System.Drawing.Point(12, 12);
+            this.btnCreateBrand.Name = "btnCreateBrand";
+            this.btnCreateBrand.Size = new System.Drawing.Size(205, 91);
+            this.btnCreateBrand.TabIndex = 0;
+            this.btnCreateBrand.Text = "Aggiungi Marca";
+            this.btnCreateBrand.UseVisualStyleBackColor = true;
+            this.btnCreateBrand.Click += new System.EventHandler(this.btnCreateBrand_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCreateBrand);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -43,6 +55,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnCreateBrand;
     }
 }
 

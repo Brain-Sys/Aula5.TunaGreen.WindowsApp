@@ -32,6 +32,16 @@ namespace Aula5.TunaGreen.ModernWindowsApp
         {
             // int x = db.ResetRegistrationDate();
 
+            var lista = db.Cars
+                .OrderBy(c => c.ID)
+                .Where(c => c.Color == "Antracite")
+                .Take(5)
+                .ToList();
+
+                //.ToList()
+                //.OrderBy(c => c.Km)
+                //.Take(10);
+
             List<SmallCar> ricerca = db.SearchCarsByYear(1970)
                 .Take(20)
                 .OrderByDescending(c => c.ID)

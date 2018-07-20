@@ -16,7 +16,7 @@ namespace Aula5.TunaGreen.ModernWindowsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new StationServiceForm());
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -27,6 +28,7 @@ namespace Aula5.TunaGreen.ModernWindowsApp
             db.Database.Log = (s) =>
             {
                 Debug.WriteLine(s);
+                File.AppendAllText("E:\\Log_Aula5.txt", s);
             };
 
             ctx.Save();
@@ -37,13 +39,32 @@ namespace Aula5.TunaGreen.ModernWindowsApp
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            // int x = db.ResetRegistrationDate();
+            db.Configuration.LazyLoadingEnabled = true;
+            // int x = db.ResetRegistrationDate()
 
-            var lista = db.Cars
+            var car = db.Cars
                 .OrderBy(c => c.ID)
                 .Where(c => c.Color == "Antracite")
                 .Take(5)
                 .ToList();
+
+            var bmw = db.TableBrands
+                .Include("Cars")
+                .FirstOrDefault(b => b.Name == "BMW");
+
+            foreach (var item in bmw.Cars)
+            {
+                Debug.WriteLine(item.ID);
+            }
+
+            Car newCar = new Car();
+            db.Cars.Add(newCar);
+            DbEntityEntry<Car> auto = db.Entry<Car>(newCar);
+            // db.Configuration.AutoDetectChangesEnabled = false;
+            // db.Configuration.EnsureTransactionsForFunctionsAndCommands = false;
+            
+
+            int q = db.ChangeTracker.Entries<Car>().Count();
 
             //.ToList()
             //.OrderBy(c => c.Km)
@@ -73,13 +94,26 @@ namespace Aula5.TunaGreen.ModernWindowsApp
                 var dopo = (double)obj.CurrentValues["Km"];
 
                 DbPropertyValues values = obj.GetDatabaseValues();
+
+
+                db.Database.BeginTransaction();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    db.Database.CurrentTransaction.Rollback();
+                }
+
+                db.Database.CurrentTransaction.Commit();
             }
 
             List<DbEntityEntry> list = db.ChangeTracker.Entries()
                 .Where(en => en.State != EntityState.Unchanged)
                 .ToList();
 
-            db.SaveChanges();
+            
 
             //int c = db.ChangeTracker.Entries()
             //    .Where(en => en.State == EntityState.Added)

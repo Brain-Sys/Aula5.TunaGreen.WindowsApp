@@ -103,6 +103,10 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Model" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <EnumType Name="Status">
+          <Member Name="New" />
+          <Member Name="Used" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

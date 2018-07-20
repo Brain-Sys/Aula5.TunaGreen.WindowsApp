@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'Z:\MyData\Documenti\Visual Studio 2017\Projects\Aula5.TunaGreen.WindowsApp\Aula5.TunaGreen.WindowsApp\CarsModel.edmx'. 
+﻿// T4 code generation is enabled for model 'Z:\MyData\Documenti\Visual Studio 2017\Projects\Aula5.TunaGreen.WindowsApp\Aula5.TunaGreen.SqlServerRepository\CarsModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

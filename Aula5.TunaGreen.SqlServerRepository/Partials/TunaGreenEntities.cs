@@ -1,4 +1,4 @@
-﻿using Aula5.TunaGreen.Interfaces;
+﻿using Aula5.TunaGreen.SqlServerRepository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,22 @@ namespace Aula5.TunaGreen.SqlServerRepository
 {
     public partial class TunaGreenEntities : IRepo
     {
+        public IQueryable<Car> TableCars
+        {
+            get
+            {
+                return this.Cars.AsQueryable();
+            }
+        }
+
+        public IQueryable<Brand> TableBrands
+        {
+            get
+            {
+                return this.Brands.AsQueryable();
+            }
+        }
+
         public void Init()
         {
 #if DEBUG

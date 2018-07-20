@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula5.TunaGreen.SqlServerRe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula5.TunaGreen.ModernWindowsApp", "Aula5.TunaGreen.ModernWindowsApp\Aula5.TunaGreen.ModernWindowsApp.csproj", "{89F772D1-5A12-4663-A454-EB0B5C78EE5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula5.TunaGreen.OfficialWebsite", "Aula5.TunaGreen.OfficialWebsite\Aula5.TunaGreen.OfficialWebsite.csproj", "{516D8E2E-8D3F-4FF0-B2DC-21463BE6A516}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{89F772D1-5A12-4663-A454-EB0B5C78EE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89F772D1-5A12-4663-A454-EB0B5C78EE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89F772D1-5A12-4663-A454-EB0B5C78EE5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{516D8E2E-8D3F-4FF0-B2DC-21463BE6A516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{516D8E2E-8D3F-4FF0-B2DC-21463BE6A516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{516D8E2E-8D3F-4FF0-B2DC-21463BE6A516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{516D8E2E-8D3F-4FF0-B2DC-21463BE6A516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

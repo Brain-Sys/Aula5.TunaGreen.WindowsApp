@@ -16,6 +16,7 @@ namespace Aula5.TunaGreen.ModernWindowsApp
         public Form1()
         {
             InitializeComponent();
+            ctx.Init();
         }
 
         private async void Form1_Load(object sender, EventArgs e)
